@@ -1,8 +1,14 @@
 # Import Dependencies
 from flask import Flask
 from flask_cors import CORS
+from dotenv import load_dotenv, find_dotenv
 
-# Import Configurations
+# Load Environment Variables
+ENV_FILE = find_dotenv()
+if ENV_FILE:
+    load_dotenv(ENV_FILE)
+
+# Import Database
 from server.connection.database import db
 
 # Import Seed Data Function
@@ -22,8 +28,10 @@ def create_app():
     db.init_app(app)
 
     # Import Routes
+    from server.routes.accounts import accounts
 
     # Register Blueprints
+    app.register_blueprint(accounts, url_prefix='/accounts')
 
 
     with app.app_context():
