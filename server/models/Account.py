@@ -11,16 +11,18 @@ class Account(db.Model):
     password = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=True)
     username = db.Column(db.String(255), nullable=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    # Figure out Auth0 Integration for User ID
+    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     # Define Methods
     # Init Method: Initializes Account Object
-    def __init__(self, account_name, password, email, username, user_id):
+    def __init__(self, account_name, password, email, username):
         self.account_name = account_name
         self.password = password
         self.email = email
         self.username = username
-        self.user_id = user_id
+        # self.user_id = user_id
 
     # Serialize Method: Returns Account Object as Dictionary for JSON
     def serialize(self):
@@ -30,5 +32,5 @@ class Account(db.Model):
             'password': self.password,
             'email': self.email,
             'username': self.username,
-            'user_id': self.user_id
+            # 'user_id': self.user_id
         }
