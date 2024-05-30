@@ -12,7 +12,7 @@ if ENV_FILE:
 from server.connection.database import db
 
 # Import Seed Data Function
-
+from server.seed_data.main import seedData
 
 
 
@@ -37,32 +37,13 @@ def create_app():
     with app.app_context():
         db.create_all()
         # Seed Data Function
+        seedData()
 
     return app
 
 
 # Database Setup
 app = create_app()
-
-
-# Run the application
-if __name__ == "__main__":
-    app.run(debug=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # Run the application
