@@ -7,7 +7,7 @@ import os
 f = Fernet(os.getenv('ENCRYPTION_KEY', 'none'))
 
 # Import Models
-from server.models import Account
+from server.models.Account import Account
 
 # Define Blueprint
 accounts = Blueprint('accounts', __name__)
@@ -52,5 +52,15 @@ def create_account():
         db.session.commit()
 
         return jsonify(account.serialize()), 201
+    except Exception as e:
+        return jsonify({'message': str(e)}), 500
+
+
+# Get All Accounts (Returns Encrypted Data)
+@accounts.route('/all', methods=['GET'])
+def get_accounts():
+    try:
+        allAccounts = Account.query.all()
+        return jsonify([account.serialize() for account in allAccounts]), 200
     except Exception as e:
         return jsonify({'message': str(e)}), 500
