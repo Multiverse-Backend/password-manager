@@ -121,3 +121,20 @@ def update_account(id):
     except Exception as e:
         return jsonify({'message': str(e)}), 500
         
+
+# Delete an Account (by ID)
+@accounts.route('/<int:id>', methods=['DELETE'])
+def delete_account(id):
+    try:
+        account = Account.query.get(id)
+
+        if not account:
+            return jsonify({'message': 'Account not found'}), 404
+        
+        db.session.delete(account)
+        db.session.commit()
+
+        return jsonify({'message': 'Account deleted successfully'}), 200
+    
+    except Exception as e:
+        return jsonify({'message': str(e)}), 500
