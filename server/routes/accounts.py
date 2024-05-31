@@ -93,3 +93,31 @@ def get_account(id):
     except Exception as e:
         return jsonify({'message': str(e)}), 500
 
+
+# Update an Account by ID
+@accounts.route('/<int:id>/update', methods=['PUT'])
+def update_account(id):
+    try:
+        account = Account.query.get(id)
+
+        if 'account_name' in request.json:
+            account.account_name = request.json['account_name']
+
+        if 'password' in request.json:
+            encrypted_password = f.encrypt(request.json['password'].encode())
+            account.password = encrypted_password.decode()
+
+        if 'email' in request.json:
+            encrypted_email = f.encrypt(request.json['email'].encode())
+            account.email = encrypted_email.decode()
+
+        if 'username' in request.json:
+            encrypted_username = f.encrypt(request.json['username'].encode())
+            account.username = encrypted_username.decode()
+
+        db.session.commit()
+
+        return jsonify({'message': 'Account updated successfully'}), 200
+    except Exception as e:
+        return jsonify({'message': str(e)}), 500
+        
