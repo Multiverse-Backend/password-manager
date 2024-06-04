@@ -36,32 +36,36 @@ h1 {
     padding: 1.5em;
 }
 #intro {
-    font-size: 24pt;
+    font-size: 28pt;
     font-weight: bolder;
-    margin: 1em 0;
+    margin: 1em 0 2em 0;
     text-transform: capitalize;
     max-width: 55vw;
 }
 /* Logo Styles */
 #logo {
-    width: 35em;
+    width: 30em;
      display: flex;
      flex-direction: column;
-     justify-content: flex-end;     
+     justify-content: flex-start;     
+}
+
+#lock-logo {
+    width: 20em;
+    align-self: flex-end;
 }
 /* Flex Container for Logo and Content Styles */
 #flex-container {
     display: flex;
     justify-content: space-between;
     overflow: hidden;
-    height: 70vh;
-    margin: 1.5em;
+    height: 75vh;
+    margin: 1.5em 0 1.5em 1.5em;
 }
 /* Action Buttons/Div Styles -  */
 #action-buttons {
     display: flex;
     gap: 1.5em;
-    margin-top: 1.5em;
 }
 #login-button {
     background-color: rgb(94, 145, 17);

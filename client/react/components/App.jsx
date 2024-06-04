@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
 // Import Assets
-import logo from '../../assets/logo-white.png';
+import logo from '../../assets/logo-white-split.png';
 
 // Import Components
 import LoginButton from './Login';
@@ -29,8 +29,6 @@ function App() {
                         {/* Brief Description of Password Manager Application */}
                         <p id='intro'>Securely store and generate 
                             unique passwords for your online accounts</p>
-
-                        <p id='continue'>Make an account for free!</p><br/>
 
                         <div id='action-buttons'>
                             <LoginButton />
