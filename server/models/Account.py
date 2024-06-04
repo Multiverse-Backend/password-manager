@@ -1,7 +1,7 @@
 # Account Model
 
 # Import Dependencies
-from server.connection.database import db
+from server.connection import db
 
 
 # Define Model
