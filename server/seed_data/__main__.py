@@ -1,9 +1,9 @@
 # Seed Data Function
 
 # Import Dependencies
-from server.models.Account import Account
+from server.models import Account
 import json
-from server.connection.database import db
+from server.connection import db
 
 
 # Access Existing Fernet Object
