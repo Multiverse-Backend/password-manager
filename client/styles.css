@@ -1,0 +1,77 @@
+/* APPLY TO ALL BLOCK */
+/* Adds red border around all elements - helps with layout */
+/* * {
+    border: red dashed 1pt;
+} */
+/* Font and Colors */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(45, 43, 43);
+    color: white;
+}
+/* END OF APPLY TO ALL BLOCK */
+
+
+
+/* HEADER STYLE BLOCK */
+/* Password Manager Title Styles */
+h1 {
+    font-weight: bolder;
+    border-bottom: solid 0.5px greenyellow;
+    padding: 1em;
+    font-size: 20pt;
+}
+.flex-div {
+    display: flex;
+    justify-content: space-between;
+}
+/* END OF HEADER STYLE BLOCK */
+
+
+
+/* LANDING PAGE BLOCK */
+/* Content Styles */
+.body {
+    font-size: 15pt;
+    padding: 1.5em;
+}
+#intro {
+    font-size: 24pt;
+    font-weight: bolder;
+    margin: 1em 0;
+    text-transform: capitalize;
+    max-width: 55vw;
+}
+/* Logo Styles */
+#logo {
+    width: 35em;
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-end;     
+}
+/* Flex Container for Logo and Content Styles */
+#flex-container {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    height: 70vh;
+    margin: 1.5em;
+}
+/* Action Buttons/Div Styles -  */
+#action-buttons {
+    display: flex;
+    gap: 1.5em;
+    margin-top: 1.5em;
+}
+#login-button {
+    background-color: rgb(94, 145, 17);
+    padding: 0.5em 3em;
+    font-size: 13pt;
+}
+#login-button:hover {
+    background-color: rgb(68, 109, 5);
+}
+#generate-password {
+    padding: 0.5em 2em;
+}
+/* END OF LANDING PAGE BLOCK */
