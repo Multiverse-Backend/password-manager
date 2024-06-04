@@ -19,7 +19,7 @@ from server.seed_data.__main__ import seedData
 
 # Create an instance of Flask
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='client')
     CORS(app)
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
