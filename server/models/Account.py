@@ -9,7 +9,7 @@ class Account(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     account_name = db.Column(db.String(255), nullable=False)
     password = db.Column(db.String(255), nullable=False)
-    email = db.Column(db.String(255), nullable=True)
+    email = db.Column(db.String(255), nullable=False)
     username = db.Column(db.String(255), nullable=True)
 
     # Figure out Auth0 Integration for User ID
