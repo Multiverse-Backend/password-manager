@@ -24,9 +24,8 @@ def seedData():
                 encrypted_password = f.encrypt(account['password'].encode())
                 account['password'] = encrypted_password.decode()
 
-                if 'email' in account:
-                    encrypted_email = f.encrypt(account['email'].encode())
-                    account['email'] = encrypted_email.decode()
+                encrypted_email = f.encrypt(account['email'].encode())
+                account['email'] = encrypted_email.decode()
 
                 if 'username' in account:
                     encrypted_username = f.encrypt(account['username'].encode())
@@ -35,7 +34,7 @@ def seedData():
                 new_account = Account(
                     account_name=account['account_name'],
                     password=account['password'],
-                    email=account['email'] if 'email' in account else None,
+                    email=account['email'],
                     username=account['username'] if 'username' in account else None
                 )
                 db.session.add(new_account)

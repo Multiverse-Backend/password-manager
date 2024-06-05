@@ -25,6 +25,8 @@ def create_account():
             return jsonify({'message': 'Account Name is required'}), 400
         if 'password' not in data:
             return jsonify({'message': 'Password is required'}), 400
+        if 'email' not in data:
+            return jsonify({'message': 'Email is required'}), 400
         if 'email' not in data and 'username' not in data:
             return jsonify({'message': 'Email or Username is required'}), 400
         
@@ -32,9 +34,9 @@ def create_account():
         encrypted_password = f.encrypt(data['password'].encode())
         data['password'] = encrypted_password.decode()
 
-        if 'email' in data:
-            encrypted_email = f.encrypt(data['email'].encode())
-            data['email'] = encrypted_email.decode()
+        encrypted_email = f.encrypt(data['email'].encode())
+        data['email'] = encrypted_email.decode()
+
         if 'username' in data:
             encrypted_username = f.encrypt(data['username'].encode())
             data['username'] = encrypted_username.decode()
@@ -43,9 +45,8 @@ def create_account():
         account = Account(
             account_name=data['account_name'],
             password=data['password'],
-            email=data['email'] if 'email' in data else None,
+            email=data['email'],
             username=data['username'] if 'username' in data else None,
-            # user_id=user_id
         )  
         # Add account to database
         db.session.add(account)
@@ -64,7 +65,46 @@ def get_accounts():
         return jsonify([account.serialize() for account in allAccounts]), 200
     except Exception as e:
         return jsonify({'message': str(e)}), 500
-    
+
+
+# Get All Accounts (for User)
+@accounts.route('/', methods=['GET'])
+def get_user_accounts():
+    try:
+        # Get accounts associated with email
+        data = request.json
+
+        if 'email' not in data:
+            return jsonify({'message': 'Email is required'}), 400
+        
+        # Get All Accounts
+        allAccounts = Account.query.all()
+
+        # Loop through accounts and create copy to decrypt
+        for account in allAccounts:
+            account_copy = account
+
+            # Decrypt Email Only
+            decrypted_email = f.decrypt(account_copy.email.encode())
+            account_copy.email = decrypted_email.decode()
+
+            # If Account Email does NOT match User Email, skip
+            if account_copy.email != data['email']:
+                continue
+
+            # If Account Email DOES match User Email, Decrypt Password and Username
+            decrypted_password = f.decrypt(account_copy.password.encode())
+            account_copy.password = decrypted_password.decode()
+
+            if account_copy.username:
+                decrypted_username = f.decrypt(account_copy.username.encode())
+                account_copy.username = decrypted_username.decode()
+
+        # Return List of Accounts with Matching Emails
+        return jsonify([account_copy.serialize() for account_copy in allAccounts if account_copy.email == data['email']]), 200
+    except Exception as e:
+        return jsonify({'message': str(e)}), 500
+
 
 # Get an Account by ID (Returns Decrypted Data)
 @accounts.route('/<int:id>', methods=['GET'])
@@ -81,9 +121,9 @@ def get_account(id):
         decrypted_password = f.decrypt(account_copy.password.encode())
         account_copy.password = decrypted_password.decode()
 
-        if account_copy.email:
-            decrypted_email = f.decrypt(account_copy.email.encode())
-            account_copy.email = decrypted_email.decode()
+        decrypted_email = f.decrypt(account_copy.email.encode())
+        account_copy.email = decrypted_email.decode()
+
         if account_copy.username:
             decrypted_username = f.decrypt(account_copy.username.encode())
             account_copy.username = decrypted_username.decode()

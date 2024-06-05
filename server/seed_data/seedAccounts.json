@@ -9,13 +9,14 @@
         "id": 2,
         "account_name": "Facebook",
         "password": "lovely123",
-        "username": "AsiaWest"
+        "username": "AsiaWest",
+        "email": "Asiaa12@gmail.com"
     },
     {
         "id": 3,
         "account_name": "Naples Credit Union",
         "password": "MonHoney333",
-        "email": "Michael Scott"
+        "email": "JBeckford@yahoo.com"
     },
     {
         "id": 4,
