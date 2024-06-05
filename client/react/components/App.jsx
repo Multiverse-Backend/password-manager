@@ -17,7 +17,7 @@ import apiurl from "../api";
 
 function App() {
     // Authentication Variables
-    const { isAuthenticated } = useAuth0();
+    const { isAuthenticated, user } = useAuth0();
 
     // View State Variables
     const [generatePasswordView, setGeneratePasswordView] = useState(false);
@@ -26,6 +26,9 @@ function App() {
     // Generated Password State
     const [generatedPassword, setGeneratedPassword] = useState(null);
     const [length, setLength] = useState(0);
+
+    // User Accounts State
+    const [userAccounts, setUserAccounts] = useState([]);
     
 
     // Generate Password Function
@@ -47,6 +50,20 @@ function App() {
     function handleButtonClick() {
         setGeneratePasswordView(!generatePasswordView);
         setGeneratedPassword(null);
+    }
+
+    // Fetch User Accounts Function
+    async function fetchUserAccounts(user) {
+        try {
+            const res = await axios.get(`${apiurl}/accounts/`, {
+                email: user.email
+            });
+            console.log(user.email);
+            console.log(res.data);
+            setUserAccounts(res.data);
+        } catch (error) {
+            console.error("Error fetching user accounts", error);
+        }
     }
 
 
@@ -76,7 +93,7 @@ function App() {
             </>
                 // If User is Authenticated, display Profile
                 : isAuthenticated && !generatePasswordView ?
-                    <Profile />
+                    <Profile handleButtonClick={handleButtonClick} fetchUserAccounts={fetchUserAccounts} userAccounts={userAccounts} />
                 // If Generate Password View is toggled, display Generate Password Data
                 : generatePasswordView &&
                 <>
@@ -85,7 +102,7 @@ function App() {
                     <div id="form-container">
                         <input type="number" placeholder="Enter Length" onChange={(e) => setLength(e.target.value)} /><br/>
                         <button id="submit" className="btn btn-outline-light" onClick={() => generatePassword(length)}>Submit</button><br/>
-                    </div><br/>
+                    </div>
 
                     {/* If Generated Password is NOT null, display the result */}
                     {generatedPassword !== null &&

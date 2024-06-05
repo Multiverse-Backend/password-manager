@@ -11,6 +11,10 @@ body {
     background-color: rgb(45, 43, 43);
     color: white;
 }
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
 /* END OF APPLY TO ALL BLOCK */
 
 
@@ -98,13 +102,27 @@ h1 {
 
 
 /* PROFILE PAGE BLOCK */
+/* Welcome Message Styles */
 #greeting {
-    margin: 2em 0 0 1em;
     font-weight: bolder;
+    font-size: 27pt;
 }
-
+/* Div for all content excluding navbar */
+.main-content {
+    margin: 5em;
+}
+/* My Accounts Div Styles */
 #my-accounts {
-    margin: 1em 2em;
+    border-radius: 5px;
+    width: 55vw;
+    height: 50vh;
+    overflow-y: scroll;
+}
+#actions {
+    width: 30vw;
+    text-align: center;
+    border-left: solid 1pt rgba(220, 220, 220, 0.538);
+    gap: 2em;
 }
 /* END OF PROFILE PAGE BLOCK */
 
@@ -128,21 +146,23 @@ h1 {
     padding: 3px;
 }
 
+#password-display {
+    text-align: center;
+}
 #output {
     /* background-color: rgba(255, 255, 255, 0.668); */
     height: 2em;
     border-radius: 3px;
     color: white;
     font-weight: bold;
-    margin: 0 20em 2em 20em;
+    margin: 1em 20em;
+    text-align: center;
 }
-
 #standards {
     margin: 0 4em;
     display: flex;
     justify-content: space-between;
 }
-
 #overview {
     text-align: left;
     max-width: 40vw;
@@ -150,7 +170,6 @@ h1 {
     flex-direction: column;
     justify-content: center;
 }
-
 #standards-list {
     width: 35vw;
     text-align: left;
@@ -158,10 +177,19 @@ h1 {
 #standards ul {
     list-style-type: none;
 }
-
 #standards li {
     background-repeat: no-repeat;
     padding-left: 30px;
     background-size: 20px;
 }
 
+
+
+/* CREATE A PASSWORD ACCOUNT BLOCK  */
+#create-account {
+    background-color: rgb(99, 155, 15);
+    padding: 0.5em 2em;
+}
+#create-account:hover {
+    background-color: rgb(128, 200, 21);
+}
