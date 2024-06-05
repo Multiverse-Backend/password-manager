@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import apiUrl from "../api";
@@ -10,6 +10,15 @@ function CreateAccount({ setNewAccountData, newAccountData, submitNewAccount, ne
     const [show, setShow] = useState(false);
 
         // Handle Changes to New Account Form
+        useEffect(() => {
+            if (user) {
+                setNewAccountData(prevData => ({
+                    ...prevData,
+                    email: user.email,
+                }))
+            }
+        }, [user, setNewAccountData]);
+
         function handleNewAccountChange(e) {
             const { name, value } = e.target;
             setNewAccountData(prevData => ({
