@@ -3,13 +3,14 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 // Import Assets
 import logo from '../../assets/logo-white-split.png';
-import bullets from '../../assets/lock-bullet.png';
 
 // Import Components
 import LoginButton from './Login';
 import Profile from './Profile';
 import NavBar from './NavBar';
-import GeneratePassword from './GeneratePassword';
+import GeneratePassword  from './GeneratePassword';
+import GeneratePasswordForm  from './GeneratePasswordForm';
+import CreateAccount from './CreateAccount';
 
 import axios from "axios";
 import apiurl from "../api";
@@ -17,11 +18,12 @@ import apiurl from "../api";
 
 function App() {
     // Authentication Variables
-    const { isAuthenticated, user } = useAuth0();
+    const { isAuthenticated, user, isLoading } = useAuth0();
 
     // View State Variables
     const [generatePasswordView, setGeneratePasswordView] = useState(false);
     const [profileView, setProfileView] = useState(false);
+    const [newAccountFormView, setNewAccountFormView] = useState(false);
 
     // Generated Password State
     const [generatedPassword, setGeneratedPassword] = useState(null);
@@ -29,6 +31,14 @@ function App() {
 
     // User Accounts State
     const [userAccounts, setUserAccounts] = useState([]);
+
+    // New Account Data State
+    const [newAccountData, setNewAccountData] = useState({
+        account_name: "",
+        password: "",
+        email: "",
+        username: ""
+    });
     
 
     // Generate Password Function
@@ -66,6 +76,23 @@ function App() {
         }
     }
 
+    // Submit New Account Function
+    async function submitNewAccount(newAccountData) {
+        try {
+            const res = await axios.post(`${apiurl}/accounts/`, {
+                account_name: newAccountData.account_name,
+                password: newAccountData.password,
+                email: newAccountData.email,
+                username: newAccountData.username
+            });
+            setUserAccounts([...userAccounts, res.data]);
+            fetchUserAccounts(user);
+        } catch (error) {
+            console.error("Error submitting new account", error);
+        }
+    }
+
+
 
     return (
         <div>
@@ -92,52 +119,21 @@ function App() {
                 </div>
             </>
                 // If User is Authenticated, display Profile
-                : isAuthenticated && !generatePasswordView ?
-                    <Profile handleButtonClick={handleButtonClick} fetchUserAccounts={fetchUserAccounts} userAccounts={userAccounts} />
-                // If Generate Password View is toggled, display Generate Password Data
+                : isAuthenticated ?
+                <>
+                    <Profile handleButtonClick={handleButtonClick} fetchUserAccounts={fetchUserAccounts} userAccounts={userAccounts} setNewAccountFormView={setNewAccountFormView} newAccountFormView={newAccountFormView} setNewAccountData={setNewAccountData} newAccountData={newAccountData} submitNewAccount={submitNewAccount} />
+                </>
+                // If Generate Password View is toggled, display Generate Password Form
                 : generatePasswordView &&
                 <>
                 <div id='container'>
                     <h2>Generate a Password</h2><br/>
-                    <div id="form-container">
-                        <input id='password-length' type="number" placeholder="Enter Length" onChange={(e) => setLength(e.target.value)} /><br/>
-                        <button id="submit" className="btn btn-outline-light" onClick={() => generatePassword(length)}>Submit</button><br/>
-                    </div>
-
-                    {/* If Generated Password is NOT null, display the result */}
-                    {generatedPassword !== null &&
-                        <>
-                            <div id="password-display" style={{display: 'block'}}>
-                                <h5>Your Password:</h5>
-                                <p id='output'>{generatedPassword}</p>
-                            </div>
-                        </>
-                    }                                
-                    
-                    {length < 8 && (
-                        <p style={{color: 'red'}}>Minimum Length is 8</p>
-                    )}
-
-<hr/><br/>
-                    <h5>Secure Password Standards</h5><br/>
-                    <div id='standards'>
-                        <div id='overview'>
-                            <p>It's important to create a secure password to protect your accounts. Here are some recommended standards to prevent unauthorized access</p>
-                        </div>
-
-                        <div id='standards-list'>
-                        <ul>
-                            <li style={{backgroundImage: `url(${bullets})`}}>At least 8 characters</li>
-                            <li style={{backgroundImage: `url(${bullets})`}}>At least one uppercase letter</li>
-                            <li style={{backgroundImage: `url(${bullets})`}}>At least one lowercase letter</li>
-                            <li style={{backgroundImage: `url(${bullets})`}}>At least one number</li>
-                            <li style={{backgroundImage: `url(${bullets})`}}>At least one special character</li>
-                        </ul>
-                        </div>
-                    </div><br/>
-                    <button id="back" className="btn btn-light" onClick={() => handleButtonClick()}>Go Back</button>
+                    <GeneratePasswordForm setLength={setLength} length={length} generatePassword={generatePassword} generatedPassword={generatedPassword} handleButtonClick={handleButtonClick} />
                 </div>    
                 </>
+                // : newAccountFormView && (
+                //     <CreateAccount setNewAccountData={setNewAccountData} newAccountData={newAccountData} submitNewAccount={submitNewAccount} newAccountFormView={newAccountFormView} setNewAccountFormView={setNewAccountFormView} />
+                // )
             }
         </div>
     );

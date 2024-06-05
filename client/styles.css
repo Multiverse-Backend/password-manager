@@ -1,7 +1,7 @@
 /* APPLY TO ALL BLOCK */
 /* Adds red border around all elements - helps with layout */
 * {
-    /* border: red dashed 1pt; */
+    border: red dashed 1pt;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
@@ -114,7 +114,7 @@ h1 {
 /* My Accounts Div Styles */
 #my-accounts {
     border-radius: 5px;
-    width: 55vw;
+    width: 50vw;
     height: 50vh;
     overflow-y: scroll;
 }
@@ -188,8 +188,28 @@ h1 {
 /* CREATE A PASSWORD ACCOUNT BLOCK  */
 #create-account {
     background-color: rgb(99, 155, 15);
-    padding: 0.5em 2em;
+    padding: 0.5em 3em;
+    margin-bottom: 1em;
 }
 #create-account:hover {
     background-color: rgb(128, 200, 21);
+}
+#create-account-modal {
+    color: black;
+}
+#new-account-form {
+    display: flex;
+    justify-content: space-around;
+}
+#new-account-form input {
+    border-radius: 5px;
+    padding: 5px 0.5em;
+    border: 1pt solid rgb(175, 174, 174);
+}
+#submit-account {
+    background-color: rgb(99, 155, 15);
+    color: white;
+}
+#submit-account:hover {
+    background-color: rgb(68, 109, 5);
 }
