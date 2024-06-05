@@ -4,19 +4,22 @@ import { useAuth0 } from "@auth0/auth0-react";
 // Import Components
 import GeneratePassword from "./GeneratePassword";
 import CreateAccount from "./CreateAccount";
+import Accounts from "./Accounts";
 
 
-function Profile({ handleButtonClick, fetchUserAccounts, userAccounts }) {
+function Profile({ handleButtonClick, fetchUserAccounts, userAccounts, setNewAccountFormView, newAccountFormView, newAccountData, setNewAccountData, submitNewAccount}) {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log(user);
 
   if (isLoading) {
     return <div>Loading ...</div>;
   }
 
   useEffect(() => {
-    fetchUserAccounts(user);
-  }, [isAuthenticated]);
+    {isLoading &&
+      fetchUserAccounts(user);
+      console.log(user);
+    }
+  }, [isLoading]);
 
 
   return (
@@ -26,34 +29,29 @@ function Profile({ handleButtonClick, fetchUserAccounts, userAccounts }) {
 
       <div className="flex">
           <div id="accounts-data">
-          <h3>My Accounts</h3>
-
-            {userAccounts.length > 0 ? (
-              <div id="my-accounts" style={{backgroundColor: 'rgba(255, 255, 255, 0.234)'}}>
-              userAccounts.map((account, idx) => (
-                <button key={idx} className="btn btn-light">
-                  {account.name}
-                </button>
-              ))
-              </div>
-            ) : (
+            <h3>My Accounts</h3>
               <div id="my-accounts">
-                <p>Create your first account now!</p><br/>
-                <CreateAccount />
+                {userAccounts.length > 0 ? (
+                  <Accounts userAccounts={userAccounts} />
+                ) : (
+                  <>
+                    <p>Create your first account now!</p><br/>
+                    <CreateAccount newAccountFormView={newAccountFormView} setNewAccountFormView={setNewAccountFormView} newAccountData={newAccountData} setNewAccountData={setNewAccountData} submitNewAccount={submitNewAccount} />
+                  </>
+                )}
               </div>
-            )}
-        </div>
+          </div>
 
         <div id="actions">
           <h3>Actions</h3><br/>
           {userAccounts.length > 0 ? (
             <>
-              <CreateAccount />
+              <CreateAccount newAccountFormView={newAccountFormView} setNewAccountFormView={setNewAccountFormView} newAccountData={newAccountData} setNewAccountData={setNewAccountData} submitNewAccount={submitNewAccount} />
               <GeneratePassword handleButtonClick={handleButtonClick} />
             </>
           ) : (
-            <GeneratePassword handleButtonClick={handleButtonClick} />
-          )
+              <GeneratePassword handleButtonClick={handleButtonClick} />
+            )
           }
           </div>
       </div>
