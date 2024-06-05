@@ -1,11 +1,13 @@
 /* APPLY TO ALL BLOCK */
 /* Adds red border around all elements - helps with layout */
-/* * {
-    border: red dashed 1pt;
-} */
+* {
+    /* border: red dashed 1pt; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
 /* Font and Colors */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
     background-color: rgb(45, 43, 43);
     color: white;
 }
@@ -17,16 +19,30 @@ body {
 /* Password Manager Title Styles */
 h1 {
     font-weight: bolder;
-    border-bottom: solid 0.5px greenyellow;
     padding: 1em;
     font-size: 20pt;
 }
 .flex-div {
     display: flex;
     justify-content: space-between;
+    border-bottom: solid 0.5px greenyellow;
 }
 /* END OF HEADER STYLE BLOCK */
 
+/* NAVBAR STYLE BLOCK */
+#right-nav {
+    display: flex;
+    gap: 1em;
+    height: 3em;
+    align-self: center;
+    margin-right: 2em;
+}
+#avatar {
+    height: 3em;
+}
+#logout-button {
+    padding: 0.5em 2em;
+}
 
 
 /* LANDING PAGE BLOCK */
@@ -36,7 +52,7 @@ h1 {
     padding: 1.5em;
 }
 #intro {
-    font-size: 28pt;
+    font-size: 27pt;
     font-weight: bolder;
     margin: 1em 0 2em 0;
     text-transform: capitalize;
@@ -68,7 +84,7 @@ h1 {
     gap: 1.5em;
 }
 #login-button {
-    background-color: rgb(94, 145, 17);
+    background-color: rgb(99, 155, 15);
     padding: 0.5em 3em;
     font-size: 13pt;
 }
@@ -79,3 +95,73 @@ h1 {
     padding: 0.5em 2em;
 }
 /* END OF LANDING PAGE BLOCK */
+
+
+/* PROFILE PAGE BLOCK */
+#greeting {
+    margin: 2em 0 0 1em;
+    font-weight: bolder;
+}
+
+#my-accounts {
+    margin: 1em 2em;
+}
+/* END OF PROFILE PAGE BLOCK */
+
+
+
+/* GENERATE PASSWORD PAGE BLOCK */
+#container {
+    margin: 3em 2em;
+    text-align: center;
+}
+
+#form-container {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-bottom: 2em;
+}
+
+#form-container input {
+    border-radius: 5px;
+    padding: 3px;
+}
+
+#output {
+    /* background-color: rgba(255, 255, 255, 0.668); */
+    height: 2em;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+    margin: 0 20em 2em 20em;
+}
+
+#standards {
+    margin: 0 4em;
+    display: flex;
+    justify-content: space-between;
+}
+
+#overview {
+    text-align: left;
+    max-width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#standards-list {
+    width: 35vw;
+    text-align: left;
+}
+#standards ul {
+    list-style-type: none;
+}
+
+#standards li {
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    background-size: 20px;
+}
+

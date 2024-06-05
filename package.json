@@ -6,19 +6,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "client-dev": "parcel client/index.html --open",
-    "start": "concurrently \"npm run client-dev\" \"python3 app.py\""
+    "start": "concurrently \"python3 app.py\" \"npm run client-dev\" "
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
+    "axios": "^1.7.2",
     "concurrently": "^8.2.2",
     "parcel": "^2.12.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.2"
   },
   "devDependencies": {
+    "buffer": "^6.0.3",
     "process": "^0.11.10"
   }
 }
