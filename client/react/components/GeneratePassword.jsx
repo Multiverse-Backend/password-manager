@@ -11,4 +11,6 @@ function GeneratePassword({ handleButtonClick }) {
     )
 }
 
+
+
 export default GeneratePassword;
