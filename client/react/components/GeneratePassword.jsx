@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 
-function GeneratePassword() {
+function GeneratePassword({ handleButtonClick }) {
 
 
     return (
-        <button id="generate-password" className="btn btn-outline-light">Generate Password</button>
+        <>
+            <button id="generate-password" className="btn btn-outline-light" onClick={() => handleButtonClick()}>Generate Password</button><br/>
+        </>
     )
 }
 
