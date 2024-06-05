@@ -98,7 +98,7 @@ function App() {
         <div>
             <NavBar generatePasswordView={generatePasswordView}/>
 
-            {/* Toggle Buttons based on Authentication */}
+            {/* If User is not Authenticated and not Generate Password View, display Sign Up & Generate Password Button */}
             {!isAuthenticated && !generatePasswordView ? 
             <>
                 <div id='flex-container'>
@@ -118,8 +118,8 @@ function App() {
                     </div>
                 </div>
             </>
-                // If User is Authenticated, display Profile
-                : isAuthenticated ?
+                // If User is Authenticated and not Generate PAssword View, display Profile
+                : isAuthenticated && !generatePasswordView ?
                 <>
                     <Profile handleButtonClick={handleButtonClick} fetchUserAccounts={fetchUserAccounts} userAccounts={userAccounts} setNewAccountFormView={setNewAccountFormView} newAccountFormView={newAccountFormView} setNewAccountData={setNewAccountData} newAccountData={newAccountData} submitNewAccount={submitNewAccount} />
                 </>
@@ -131,9 +131,6 @@ function App() {
                     <GeneratePasswordForm setLength={setLength} length={length} generatePassword={generatePassword} generatedPassword={generatedPassword} handleButtonClick={handleButtonClick} />
                 </div>    
                 </>
-                // : newAccountFormView && (
-                //     <CreateAccount setNewAccountData={setNewAccountData} newAccountData={newAccountData} submitNewAccount={submitNewAccount} newAccountFormView={newAccountFormView} setNewAccountFormView={setNewAccountFormView} />
-                // )
             }
         </div>
     );

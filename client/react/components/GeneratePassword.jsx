@@ -6,7 +6,7 @@ function GeneratePassword({ handleButtonClick }) {
 
     return (
         <>
-            <button id="generate-password" className="btn btn-outline-light" onClick={() => handleButtonClick()}>Generate Password</button><br/>
+            <button id="generate-password" className="btn btn-outline-light" onClick={handleButtonClick}>Generate Password</button><br/>
         </>
     )
 }
