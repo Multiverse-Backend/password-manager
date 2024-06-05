@@ -100,7 +100,7 @@ function App() {
                 <div id='container'>
                     <h2>Generate a Password</h2><br/>
                     <div id="form-container">
-                        <input type="number" placeholder="Enter Length" onChange={(e) => setLength(e.target.value)} /><br/>
+                        <input id='password-length' type="number" placeholder="Enter Length" onChange={(e) => setLength(e.target.value)} /><br/>
                         <button id="submit" className="btn btn-outline-light" onClick={() => generatePassword(length)}>Submit</button><br/>
                     </div>
 
@@ -112,7 +112,12 @@ function App() {
                                 <p id='output'>{generatedPassword}</p>
                             </div>
                         </>
-                    }
+                    }                                
+                    
+                    {length < 8 && (
+                        <p style={{color: 'red'}}>Minimum Length is 8</p>
+                    )}
+
 <hr/><br/>
                     <h5>Secure Password Standards</h5><br/>
                     <div id='standards'>
