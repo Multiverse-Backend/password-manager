@@ -10,7 +10,6 @@ import Profile from './Profile';
 import NavBar from './NavBar';
 import GeneratePassword  from './GeneratePassword';
 import GeneratePasswordForm  from './GeneratePasswordForm';
-import CreateAccount from './CreateAccount';
 
 import axios from "axios";
 import apiurl from "../api";
@@ -18,7 +17,7 @@ import apiurl from "../api";
 
 function App() {
     // Authentication Variables
-    const { isAuthenticated, user, isLoading } = useAuth0();
+    const { isAuthenticated, user } = useAuth0();
 
     // View State Variables
     const [generatePasswordView, setGeneratePasswordView] = useState(false);

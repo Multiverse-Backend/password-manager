@@ -25,7 +25,7 @@ function Profile({ handleButtonClick, fetchUserAccounts, userAccounts, setNewAcc
   return (
     isAuthenticated && (
       <div className="main-content">
-        <h2 id="greeting">Welcome Back, {user.given_name}!</h2><br/>
+        <h2 id="greeting">Welcome Back, {user.given_name ? user.given_name : user.nickname}!</h2><br/>
 
       <div className="flex">
           <div id="accounts-data">
