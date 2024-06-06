@@ -257,6 +257,17 @@ max-height: 25px;
     padding: 5px 0.5em;
     border: 1pt solid rgb(175, 174, 174);
 }
+#acct-name, #pword-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5em;
+}
+#password-warning, #account-warning {
+    font-size: 10pt;
+    text-align: center;
+    color: red;
+    margin-bottom: 0;
+}
 #submit-account {
     background-color: rgb(99, 155, 15);
     color: white;
