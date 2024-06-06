@@ -1,7 +1,7 @@
 /* APPLY TO ALL BLOCK */
 /* Adds red border around all elements - helps with layout */
 * {
-    border: red dashed 1pt;
+    /* border: red dashed 1pt; */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
@@ -130,7 +130,7 @@ h1 {
 
 /* USER ACCOUNTS BLOCK  */
 /* Card Styles */
-#account-name-button, #edit-button, #delete-button {
+#account-name-button, #edit-button, #delete-button, #show-password {
     background: none;
     border: none;
     display: flex;
@@ -143,11 +143,6 @@ h1 {
 .card-header #right {
     display: flex;
 }
-
-#account-name-button:hover {
-/* Add 3d button effect with inset shadow */
-    box-shadow: inset 0 0 10px 5px rgba(255, 255, 255, 0.5); 
-}
 .card-body {
     display: flex;
     justify-content: space-between;
@@ -158,10 +153,28 @@ h1 {
 .card-body #left, .card-body #right {
     width: 45%;
 }
-#edit-button img, #delete-button img {
+#edit-button img {
 max-height: 25px;
 }
-
+#delete-button img {
+    max-height: 18px;
+}
+#password-button-div {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 1em;
+}
+#show-password {
+    justify-content: flex-start;
+}
+#show-password img {
+    width: 30px;
+    height: 20px;
+}
+.card-body #right {
+    display: flex;
+    justify-content: space-between;
+}
 
 /* GENERATE PASSWORD PAGE BLOCK */
 #container {
