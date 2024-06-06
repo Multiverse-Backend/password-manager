@@ -34,6 +34,8 @@ def create_account():
         encrypted_password = f.encrypt(data['password'].encode())
         data['password'] = encrypted_password.decode()
 
+        # Transform Email to Lowercase
+        data['email'] = data['email'].lower()
         encrypted_email = f.encrypt(data['email'].encode())
         data['email'] = encrypted_email.decode()
 
@@ -68,7 +70,7 @@ def get_accounts():
 
 
 # Get All Accounts (for User)
-@accounts.route('/', methods=['GET'])
+@accounts.route('/user', methods=['POST'])
 def get_user_accounts():
     try:
         # Get accounts associated with email
