@@ -65,10 +65,9 @@ function App() {
     // Fetch User Accounts Function
     async function fetchUserAccounts(user) {
         try {
-            const res = await axios.get(`${apiurl}/accounts/`, {
-                email: user.email
+            const res = await axios.post(`${apiurl}/accounts/user`, {
+                    email: user.email
             });
-            console.log(user.email);
             console.log(res.data);
             setUserAccounts(res.data);
         } catch (error) {
@@ -85,13 +84,22 @@ function App() {
                 email: newAccountData.email,
                 username: newAccountData.username
             });
-            setUserAccounts([...userAccounts, res.data]);
             fetchUserAccounts(user);
         } catch (error) {
             console.error("Error submitting new account", error);
         }
     }
 
+    // Toggle Profile View
+    useEffect(() => {
+        if (isAuthenticated) {
+            setProfileView(true);
+            fetchUserAccounts(user);
+        } else {
+            setProfileView(false);
+        }
+    }
+    , [isAuthenticated]);
 
 
     return (
