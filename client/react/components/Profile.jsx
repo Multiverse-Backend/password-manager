@@ -7,7 +7,7 @@ import CreateAccount from "./CreateAccount";
 import Accounts from "./Accounts";
 
 
-function Profile({ handleButtonClick, fetchUserAccounts, userAccounts, setNewAccountFormView, newAccountFormView, newAccountData, setNewAccountData, submitNewAccount}) {
+function Profile({ handleButtonClick, fetchUserAccounts, userAccounts, setNewAccountFormView, newAccountFormView, newAccountData, setNewAccountData, submitNewAccount, handleDeleteClick, showDelete, setShowDelete, deleteAccount, currentID, setCurrentID }) {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
@@ -32,7 +32,7 @@ function Profile({ handleButtonClick, fetchUserAccounts, userAccounts, setNewAcc
             <h3>My Accounts</h3>
               <div id="my-accounts">
                 {userAccounts.length > 0 ? (
-                  <Accounts userAccounts={userAccounts} />
+                  <Accounts userAccounts={userAccounts} fetchUserAccounts={fetchUserAccounts} handleDeleteClick={handleDeleteClick} deleteAccount={deleteAccount} showDelete={showDelete} setShowDelete={setShowDelete} currentID={currentID} setCurrentID={setCurrentID} />
                 ) : (
                   <>
                     <p>Create your first account now!</p><br/>

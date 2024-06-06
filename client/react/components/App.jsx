@@ -38,7 +38,10 @@ function App() {
         email: "",
         username: ""
     });
-    
+
+    // Delete Account State
+    const [showDelete, setShowDelete] = useState(false);
+    const [currentID, setCurrentID] = useState(null);
 
     // Generate Password Function
     async function generatePassword(length) {
@@ -89,6 +92,24 @@ function App() {
         }
     }
 
+    // Delete Account Function
+    async function deleteAccount(accountId) {
+        try {
+            const res = await axios.delete(`${apiurl}/accounts/${accountId}`);
+            console.log(res);
+            fetchUserAccounts(user);
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    // Handle Delete Account Click
+    function handleDeleteClick(id) {
+        setCurrentID(id);
+        setShowDelete(true);
+    }
+
+
     // Toggle Profile View
     useEffect(() => {
         if (isAuthenticated) {
@@ -128,7 +149,7 @@ function App() {
                 // If User is Authenticated and not Generate PAssword View, display Profile
                 : isAuthenticated && !generatePasswordView ?
                 <>
-                    <Profile handleButtonClick={handleButtonClick} fetchUserAccounts={fetchUserAccounts} userAccounts={userAccounts} setNewAccountFormView={setNewAccountFormView} newAccountFormView={newAccountFormView} setNewAccountData={setNewAccountData} newAccountData={newAccountData} submitNewAccount={submitNewAccount} />
+                    <Profile handleButtonClick={handleButtonClick} fetchUserAccounts={fetchUserAccounts} userAccounts={userAccounts} setNewAccountFormView={setNewAccountFormView} newAccountFormView={newAccountFormView} setNewAccountData={setNewAccountData} newAccountData={newAccountData} submitNewAccount={submitNewAccount} handleDeleteClick={handleDeleteClick} deleteAccount={deleteAccount} showDelete={showDelete} setShowDelete={setShowDelete} currentID={currentID} setCurrentID={setCurrentID} />
                 </>
                 // If Generate Password View is toggled, display Generate Password Form
                 : generatePasswordView &&

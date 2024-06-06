@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 // Import Assets
@@ -6,10 +6,11 @@ import edit from "../../assets/edit-btn.png";
 import trash from "../../assets/trash-btn.png";
 import show from "../../assets/show.jpeg"
 import hide from "../../assets/hide.jpeg"
+import { Modal } from "react-bootstrap";
 
 
-function Accounts({ userAccounts }) {
-    const { isAuthenticated } = useAuth0();
+function Accounts({ userAccounts, fetchUserAccounts, handleDeleteClick, deleteAccount, showDelete, setShowDelete, currentID, setCurrentID }) {
+    const { isAuthenticated, user } = useAuth0();
 
     // State to Show/Hide Credentials
     const [showCredentials, setShowCredentials] = useState({});
@@ -21,6 +22,25 @@ function Accounts({ userAccounts }) {
             [accountId]: !prevState[accountId]
         }));
     }
+
+    function handleClose() {
+        setShowDelete(false);
+        setCurrentID(null);
+    }
+
+    function confirmDelete(id){
+        deleteAccount(id);
+        setShowDelete(false);
+        // fetchUserAccounts(user);
+        setCurrentID(null);
+    }
+
+    // Refetch User Accounts after Account Deletion
+    useEffect(() => {
+        if (showDelete) {
+            fetchUserAccounts(user);
+        }
+    }, [showDelete]);
 
     return (
         <>            
@@ -34,7 +54,7 @@ function Accounts({ userAccounts }) {
                         </div>
                         <div id="right">
                             <button id="edit-button"><img src={edit} alt="Edit"></img></button>
-                            <button id="delete-button"><img src={trash} alt="Delete"></img></button>
+                            <button id="delete-button" onClick={() => handleDeleteClick(account.id)}><img src={trash} alt="Delete"></img></button>
                         </div>
                     </div>
                     {/* If the Credential View State is True, display Account Credentials for selected Account */}                    
@@ -69,6 +89,24 @@ function Accounts({ userAccounts }) {
                     )}
                 </div>
                 ))
+            )}
+
+            {/* If Delete Button is Clicked, display Delete Confirmation Modal */}
+            
+            {showDelete && (
+                <Modal show={show} onHide={handleClose} size="sm" centered style={{color: 'black'}}>
+                    <Modal.Header><h4>Delete Account</h4></Modal.Header>
+                    <Modal.Body>
+                        <p>Are you sure you want to delete this account?</p><br/>
+                        {/* If there are User Accounts, find the account name of the current ID */}
+                        <p><b>{userAccounts && userAccounts.find(account => account.id === currentID)?.account_name}</b></p><br/>
+                        <p style={{color: 'red'}}>This action cannot be undone.</p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button className="btn btn-secondary" onClick={handleClose}>Cancel</button>
+                        <button id="delete-account" onClick={() => confirmDelete(currentID)} className="btn btn-danger">Delete</button>
+                    </Modal.Footer>
+                </Modal>
             )}
         </>
     )
