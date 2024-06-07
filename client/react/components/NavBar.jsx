@@ -16,7 +16,9 @@ function NavBar({ generatePasswordView }) {
             <div id="right-nav">
             {isAuthenticated ?
                 <>
+                {user.picture && (
                     <img id="avatar" src={user.picture} alt={user.name} />
+                )}
                     <LogoutButton /><hr/>
                 </>
             : !isAuthenticated && generatePasswordView && 

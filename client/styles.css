@@ -125,6 +125,9 @@ h1 {
     border-left: solid 1pt rgba(220, 220, 220, 0.538);
     gap: 2em;
 }
+#action-div {
+    display: block;
+}
 /* END OF PROFILE PAGE BLOCK */
 
 

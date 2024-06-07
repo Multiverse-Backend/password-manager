@@ -44,15 +44,17 @@ function Profile({ handleButtonClick, fetchUserAccounts, userAccounts, setNewAcc
 
         <div id="actions">
           <h3>Actions</h3><br/>
+          <div id="action-div">
           {userAccounts.length > 0 ? (
             <>
-              <CreateAccount newAccountFormView={newAccountFormView} setNewAccountFormView={setNewAccountFormView} newAccountData={newAccountData} setNewAccountData={setNewAccountData} submitNewAccount={submitNewAccount} />
+              <CreateAccount newAccountFormView={newAccountFormView} setNewAccountFormView={setNewAccountFormView} newAccountData={newAccountData} setNewAccountData={setNewAccountData} submitNewAccount={submitNewAccount} /><br/>
               <GeneratePassword handleButtonClick={handleButtonClick} />
             </>
           ) : (
               <GeneratePassword handleButtonClick={handleButtonClick} />
             )
           }
+          </div>
           </div>
       </div>
       
