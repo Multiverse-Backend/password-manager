@@ -6,9 +6,15 @@ Additionally, users may generate strong, unique passwords of their desired lengt
 ### Tech Stack
 - **Language:** Python
 - **Backend Framework:** Flask
+- **Frontend Framework:** React
 - **Authentication:** Auth0
 - **Database:** SQLAlchemy
 - **Encryption:** Cryptography
 
 ### Installation
 `pip install -r requirements.txt`
+
+`npm install`
+
+### Run Application
+`npm start`
