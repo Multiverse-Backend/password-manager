@@ -59,16 +59,6 @@ def create_account():
         return jsonify({'message': str(e)}), 500
 
 
-# Get All Accounts (Returns Encrypted Data)
-@accounts.route('/all', methods=['GET'])
-def get_accounts():
-    try:
-        allAccounts = Account.query.all()
-        return jsonify([account.serialize() for account in allAccounts]), 200
-    except Exception as e:
-        return jsonify({'message': str(e)}), 500
-
-
 # Get All Accounts (for User)
 @accounts.route('/user', methods=['POST'])
 def get_user_accounts():
@@ -104,34 +94,6 @@ def get_user_accounts():
 
         # Return List of Accounts with Matching Emails
         return jsonify([account_copy.serialize() for account_copy in allAccounts if account_copy.email == data['email']]), 200
-    except Exception as e:
-        return jsonify({'message': str(e)}), 500
-
-
-# Get an Account by ID (Returns Decrypted Data)
-@accounts.route('/<int:id>', methods=['GET'])
-def get_account(id):
-    try:
-        account = Account.query.get(id)
-        if not account:
-            return jsonify({'message': 'Account not found'}), 404
-        
-        # Create Copy of Account to Decrypt
-        account_copy = account
-        
-        # Decrypt Password and Identifier(s)
-        decrypted_password = f.decrypt(account_copy.password.encode())
-        account_copy.password = decrypted_password.decode()
-
-        decrypted_email = f.decrypt(account_copy.email.encode())
-        account_copy.email = decrypted_email.decode()
-
-        if account_copy.username:
-            decrypted_username = f.decrypt(account_copy.username.encode())
-            account_copy.username = decrypted_username.decode()
-
-        # Return Decrypted Account
-        return jsonify(account_copy.serialize()), 200
     except Exception as e:
         return jsonify({'message': str(e)}), 500
 
