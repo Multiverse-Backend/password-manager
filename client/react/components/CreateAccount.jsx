@@ -33,6 +33,12 @@ function CreateAccount({ setNewAccountData, newAccountData, submitNewAccount, ne
             console.log(newAccountData);
             submitNewAccount(newAccountData);
             handleClose();
+            setNewAccountData({
+                account_name: "",
+                password: "",
+                email: "",
+                username: ""        
+            })
         }
 
         // Toggle New Account Form View
@@ -55,23 +61,31 @@ function CreateAccount({ setNewAccountData, newAccountData, submitNewAccount, ne
         {newAccountFormView && (
             <>
             <Modal show={show} onHide={handleClose} size="md" centered id="create-account-modal">
-            <Modal.Header><h4>Create Account</h4></Modal.Header>
-            <Modal.Body>
-                <div id="new-account-form">
+                <Modal.Header><h4>Create Account</h4></Modal.Header>
+                <Modal.Body>
+                    <div id="new-account-form">
                         <div id="left">
-                            <Form.Label>Account Name</Form.Label><br/>
+                            <Form.Label id="acct-name">Account Name
+                                {newAccountData.account_name.length < 1 && (
+                                    <p id="account-warning">*Required</p>)}
+                            </Form.Label>
                                 <input type="text" name="account_name" onChange={handleNewAccountChange} /><br/><br/>
+                                
                             <Form.Label>Email</Form.Label><br/>
                                 <input type="email" name="email" value={user.email} onChange={handleNewAccountChange} /><br/>
                         </div>
                             
-                            <div id="right">
-                                <Form.Label>Username</Form.Label><br/>
-                                    <input type="text" name="username" onChange={handleNewAccountChange} /><br/><br/>
-                                <Form.Label>Password</Form.Label><br/>
-                                    <input type="password" name="password"  onChange={handleNewAccountChange} /><br/>
-                            </div>
-                </div>
+                        <div id="right">
+                            <Form.Label>Username</Form.Label><br/>
+                                <input type="text" name="username" onChange={handleNewAccountChange} /><br/><br/>
+                            <Form.Label id="pword-label">Password
+                                {newAccountData.password.length < 8 && (
+                                    <p id="password-warning">*Required</p>
+                                )}
+                            </Form.Label>
+                                <input type="password" name="password"  onChange={handleNewAccountChange}/><br/>
+                        </div>
+                    </div>
             </Modal.Body>
             <Modal.Footer>
                     <Button onClick={handleClose} variant="secondary">Cancel</Button>

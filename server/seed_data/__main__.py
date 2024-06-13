@@ -24,6 +24,8 @@ def seedData():
                 encrypted_password = f.encrypt(account['password'].encode())
                 account['password'] = encrypted_password.decode()
 
+                # Transform Email to Lowercase
+                account['email'] = account['email'].lower()
                 encrypted_email = f.encrypt(account['email'].encode())
                 account['email'] = encrypted_email.decode()
 

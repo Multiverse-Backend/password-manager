@@ -10,7 +10,6 @@ import Profile from './Profile';
 import NavBar from './NavBar';
 import GeneratePassword  from './GeneratePassword';
 import GeneratePasswordForm  from './GeneratePasswordForm';
-import CreateAccount from './CreateAccount';
 
 import axios from "axios";
 import apiurl from "../api";
@@ -18,7 +17,7 @@ import apiurl from "../api";
 
 function App() {
     // Authentication Variables
-    const { isAuthenticated, user, isLoading } = useAuth0();
+    const { isAuthenticated, user } = useAuth0();
 
     // View State Variables
     const [generatePasswordView, setGeneratePasswordView] = useState(false);
@@ -39,7 +38,10 @@ function App() {
         email: "",
         username: ""
     });
-    
+
+    // Delete Account State
+    const [showDelete, setShowDelete] = useState(false);
+    const [currentID, setCurrentID] = useState(null);
 
     // Generate Password Function
     async function generatePassword(length) {
@@ -65,10 +67,9 @@ function App() {
     // Fetch User Accounts Function
     async function fetchUserAccounts(user) {
         try {
-            const res = await axios.get(`${apiurl}/accounts/`, {
-                email: user.email
+            const res = await axios.post(`${apiurl}/accounts/user`, {
+                    email: user.email
             });
-            console.log(user.email);
             console.log(res.data);
             setUserAccounts(res.data);
         } catch (error) {
@@ -85,13 +86,40 @@ function App() {
                 email: newAccountData.email,
                 username: newAccountData.username
             });
-            setUserAccounts([...userAccounts, res.data]);
             fetchUserAccounts(user);
         } catch (error) {
             console.error("Error submitting new account", error);
         }
     }
 
+    // Delete Account Function
+    async function deleteAccount(accountId) {
+        try {
+            const res = await axios.delete(`${apiurl}/accounts/${accountId}`);
+            console.log(res);
+            fetchUserAccounts(user);
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    // Handle Delete Account Click
+    function handleDeleteClick(id) {
+        setCurrentID(id);
+        setShowDelete(true);
+    }
+
+
+    // Toggle Profile View
+    useEffect(() => {
+        if (isAuthenticated) {
+            setProfileView(true);
+            fetchUserAccounts(user);
+        } else {
+            setProfileView(false);
+        }
+    }
+    , [isAuthenticated]);
 
 
     return (
@@ -121,7 +149,7 @@ function App() {
                 // If User is Authenticated and not Generate PAssword View, display Profile
                 : isAuthenticated && !generatePasswordView ?
                 <>
-                    <Profile handleButtonClick={handleButtonClick} fetchUserAccounts={fetchUserAccounts} userAccounts={userAccounts} setNewAccountFormView={setNewAccountFormView} newAccountFormView={newAccountFormView} setNewAccountData={setNewAccountData} newAccountData={newAccountData} submitNewAccount={submitNewAccount} />
+                    <Profile handleButtonClick={handleButtonClick} fetchUserAccounts={fetchUserAccounts} userAccounts={userAccounts} setNewAccountFormView={setNewAccountFormView} newAccountFormView={newAccountFormView} setNewAccountData={setNewAccountData} newAccountData={newAccountData} submitNewAccount={submitNewAccount} handleDeleteClick={handleDeleteClick} deleteAccount={deleteAccount} showDelete={showDelete} setShowDelete={setShowDelete} currentID={currentID} setCurrentID={setCurrentID} />
                 </>
                 // If Generate Password View is toggled, display Generate Password Form
                 : generatePasswordView &&
