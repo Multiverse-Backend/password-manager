@@ -1,16 +1,11 @@
 {
   "name": "password-manager",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "client-dev": "parcel client/index.html --open",
     "build": "parcel build client/index.html",
     "start": "concurrently \"python3 server/app.py\" \"npm run client-dev\" "
   },
-  "keywords": [],
-  "author": "",
+  "author": "Tatiana Stewart",
   "license": "ISC",
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
