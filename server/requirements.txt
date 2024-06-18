@@ -10,6 +10,7 @@ Flask==3.0.0
 Flask-Cors==4.0.1
 Flask-SQLAlchemy==3.1.1
 Flask-DotEnv>=0.1.2
+gunicorn==22.0.0
 idna==3.6
 importlib-metadata==6.8.0
 itsdangerous==2.1.2
