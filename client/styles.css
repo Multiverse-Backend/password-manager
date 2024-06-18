@@ -1,0 +1,280 @@
+/* APPLY TO ALL BLOCK */
+/* Adds red border around all elements - helps with layout */
+* {
+    /* border: red dashed 1pt; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+/* Font and Colors */
+body {
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    background-color: rgb(45, 43, 43);
+    color: white;
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+/* END OF APPLY TO ALL BLOCK */
+
+
+
+/* HEADER STYLE BLOCK */
+/* Password Manager Title Styles */
+h1 {
+    font-weight: bolder;
+    padding: 1em;
+    font-size: 20pt;
+}
+.flex-div {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 0.5px greenyellow;
+}
+/* END OF HEADER STYLE BLOCK */
+
+/* NAVBAR STYLE BLOCK */
+#right-nav {
+    display: flex;
+    gap: 1em;
+    height: 3em;
+    align-self: center;
+    margin-right: 2em;
+}
+#avatar {
+    height: 3em;
+}
+#logout-button {
+    padding: 0.5em 2em;
+}
+
+
+/* LANDING PAGE BLOCK */
+/* Content Styles */
+.body {
+    font-size: 15pt;
+    padding: 1.5em;
+}
+#intro {
+    font-size: 27pt;
+    font-weight: bolder;
+    margin: 1em 0 2em 0;
+    text-transform: capitalize;
+    max-width: 55vw;
+}
+/* Logo Styles */
+#logo {
+    width: 30em;
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-start;     
+}
+
+#lock-logo {
+    width: 20em;
+    align-self: flex-end;
+}
+/* Flex Container for Logo and Content Styles */
+#flex-container {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    height: 75vh;
+    margin: 1.5em 0 1.5em 1.5em;
+}
+/* Action Buttons/Div Styles -  */
+#action-buttons {
+    display: flex;
+    gap: 1.5em;
+}
+#login-button {
+    background-color: rgb(99, 155, 15);
+    padding: 0.5em 3em;
+    font-size: 13pt;
+}
+#login-button:hover {
+    background-color: rgb(68, 109, 5);
+}
+#generate-password {
+    padding: 0.5em 2em;
+}
+/* END OF LANDING PAGE BLOCK */
+
+
+/* PROFILE PAGE BLOCK */
+/* Welcome Message Styles */
+#greeting {
+    font-weight: bolder;
+    font-size: 27pt;
+}
+/* Div for all content excluding navbar */
+.main-content {
+    margin: 5em;
+}
+/* My Accounts Div Styles */
+#my-accounts {
+    border-radius: 5px;
+    width: 50vw;
+    height: 50vh;
+    overflow-y: scroll;
+    padding: 1em;
+}
+#actions {
+    width: 30vw;
+    text-align: center;
+    border-left: solid 1pt rgba(220, 220, 220, 0.538);
+    gap: 2em;
+}
+#action-div {
+    display: block;
+}
+/* END OF PROFILE PAGE BLOCK */
+
+
+/* USER ACCOUNTS BLOCK  */
+/* Card Styles */
+#account-name-button, #edit-button, #delete-button, #show-password {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.card {
+    margin: 1em 0;
+}
+.card-header #right {
+    display: flex;
+}
+.card-title {
+    margin-bottom: 0;
+}
+.card-body {
+    display: flex;
+    justify-content: space-between;
+    max-height: 10em;
+    overflow-y: scroll;
+    padding: 1em;
+}
+.card-body #left, .card-body #right {
+    width: 45%;
+}
+#edit-button img {
+max-height: 25px;
+}
+#delete-button img {
+    max-height: 18px;
+}
+#password-button-div {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 1em;
+}
+#show-password {
+    justify-content: flex-start;
+}
+#show-password img {
+    width: 30px;
+    height: 20px;
+}
+.card-body #right {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* GENERATE PASSWORD PAGE BLOCK */
+#container {
+    margin: 3em 2em;
+    text-align: center;
+}
+
+#form-container {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-bottom: 2em;
+}
+
+#form-container input {
+    border-radius: 5px;
+    padding: 3px;
+}
+
+#password-display {
+    text-align: center;
+}
+#output {
+    /* background-color: rgba(255, 255, 255, 0.668); */
+    height: 2em;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+    margin: 1em 20em;
+    text-align: center;
+}
+#standards {
+    margin: 0 4em;
+    display: flex;
+    justify-content: space-between;
+}
+#overview {
+    text-align: left;
+    max-width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#standards-list {
+    width: 35vw;
+    text-align: left;
+}
+#standards ul {
+    list-style-type: none;
+}
+#standards li {
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    background-size: 20px;
+}
+
+
+
+/* CREATE A PASSWORD ACCOUNT BLOCK  */
+#create-account {
+    background-color: rgb(99, 155, 15);
+    padding: 0.5em 3em;
+    margin-bottom: 1em;
+}
+#create-account:hover {
+    background-color: rgb(128, 200, 21);
+}
+#create-account-modal {
+    color: black;
+}
+#new-account-form {
+    display: flex;
+    justify-content: space-around;
+}
+#new-account-form input {
+    border-radius: 5px;
+    padding: 5px 0.5em;
+    border: 1pt solid rgb(175, 174, 174);
+}
+#acct-name, #pword-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5em;
+}
+#password-warning, #account-warning {
+    font-size: 10pt;
+    text-align: center;
+    color: red;
+    margin-bottom: 0;
+}
+#submit-account {
+    background-color: rgb(99, 155, 15);
+    color: white;
+}
+#submit-account:hover {
+    background-color: rgb(68, 109, 5);
+}
