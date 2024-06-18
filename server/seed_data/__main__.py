@@ -16,7 +16,7 @@ def seedData():
         db.session.query(Account).delete()
 
         # Open JSON File
-        with open('server/seed_data/seedAccounts.json') as file:
+        with open('seed_data/seedAccounts.json') as file:
             data = json.load(file)
 
             for account in data:
