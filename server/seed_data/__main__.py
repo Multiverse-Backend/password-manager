@@ -1,13 +1,13 @@
 # Seed Data Function
 
 # Import Dependencies
-from server.models import Account
+from models import Account
 import json
-from server.connection import db
+from connection import db
 
 
 # Access Existing Fernet Object
-from server.routes.accounts import f
+from routes.accounts import f
 
 
 def seedData():

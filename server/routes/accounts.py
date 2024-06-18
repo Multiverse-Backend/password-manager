@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from server.connection import db
+from connection import db
 from cryptography.fernet import Fernet
 import os
 
@@ -7,7 +7,7 @@ import os
 f = Fernet(os.getenv('ENCRYPTION_KEY', 'none'))
 
 # Import Models
-from server.models import Account
+from models import Account
 
 # Define Blueprint
 accounts = Blueprint('accounts', __name__)

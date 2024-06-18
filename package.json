@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "client-dev": "parcel client/index.html --open",
-    "start": "concurrently \"python3 app.py\" \"npm run client-dev\" "
+    "build": "parcel build client/index.html",
+    "start": "concurrently \"python3 server/app.py\" \"npm run client-dev\" "
   },
   "keywords": [],
   "author": "",

@@ -9,10 +9,10 @@ if ENV_FILE:
     load_dotenv(ENV_FILE)
 
 # Import Database
-from server.connection import db
+from connection import db
 
 # Import Seed Data Function
-from server.seed_data.__main__ import seedData
+from seed_data.__main__ import seedData
 
 
 
@@ -28,7 +28,7 @@ def create_app():
     db.init_app(app)
 
     # Import Routes
-    from server.routes import accounts, generate
+    from routes import accounts, generate
 
     # Register Blueprints
     app.register_blueprint(accounts, url_prefix='/accounts')
