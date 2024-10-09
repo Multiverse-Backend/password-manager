@@ -40,7 +40,7 @@ function Profile({ handleButtonClick, fetchUserAccounts, userAccounts, setNewAcc
                   </>
                 )}
               </div>
-          </div>
+          </div><hr/>
 
         <div id="actions">
           <h3>Actions</h3><br/>

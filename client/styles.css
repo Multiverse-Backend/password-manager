@@ -1,7 +1,7 @@
 /* APPLY TO ALL BLOCK */
 /* Adds red border around all elements - helps with layout */
 * {
-    /* border: red dashed 1pt; */
+    border: red dashed 1pt;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }

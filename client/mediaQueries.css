@@ -43,7 +43,7 @@
     }
 
     .flex-div h1 {
-        font-size: 15pt;
+        font-size: 14pt;
     }
 
     #right-nav {
@@ -74,6 +74,48 @@
     #standards-list {
         width: 70vw;
         margin: 0;
+    }
+
+    .main-content {
+        display: block;
+        margin: 2em 1.5em;
+    }
+
+    #actions {
+        padding-left: 0.5em;
+        width: 100vw;
+        border-left: none;
+    }
+
+    #action-div button {
+        padding: 0.5em;
+    }
+
+    .flex {
+        display: block;
+    }
+
+    #my-accounts {
+        width: 90vw;
+        height: 30vh;
+    }
+
+
+    #create-account {
+        padding: 0.5em 1em;
+    }
+
+    #logout-button {
+        padding: 0.5em;
+        width: 5em;
+    }
+
+    .modal {
+        width: 100vw;
+    }
+
+    input {
+        width: 10em;
     }
     
 
