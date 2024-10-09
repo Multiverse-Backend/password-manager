@@ -63,6 +63,10 @@ h1 {
     max-width: 55vw;
 }
 /* Logo Styles */
+#full-logo {
+    display: none;
+}
+
 #logo {
     width: 30em;
      display: flex;
