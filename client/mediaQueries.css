@@ -134,6 +134,10 @@
     .card-text {
         font-size: 10pt;
     }
+
+    .card-header.flex {
+        display: flex;
+    }
     
 
 }
