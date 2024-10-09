@@ -3,6 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 // Import Assets
 import logo from '../../assets/logo-white-split.png';
+import fullLogo from '../../assets/logo-white.png';
 
 // Import Components
 import LoginButton from './Login';
@@ -130,6 +131,11 @@ function App() {
             {!isAuthenticated && !generatePasswordView ? 
             <>
                 <div id='flex-container'>
+                
+                <div id='media-query-logo'>
+                        <img id='full-logo' src={fullLogo} alt='logo' />
+                    </div>
+
                     <div className='body'>
                         {/* Brief Description of Password Manager Application */}
                         <p id='intro'>Securely store and generate 
