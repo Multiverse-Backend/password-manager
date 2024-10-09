@@ -1,6 +1,6 @@
 @media screen and (max-width: 1080px) {
     h1 {
-        text-align: center;
+        text-align: left;
     }
     #flex-container {
         display: block;
@@ -93,7 +93,7 @@
 
     #action-div button {
         padding: 0.5em;
-        width: 14em;
+        width: 16em;
     }
 
     .flex {
@@ -121,6 +121,7 @@
     #logout-button {
         padding: 0.5em;
         width: 5em;
+        font-size: 10pt;
     }
 
     .modal {
