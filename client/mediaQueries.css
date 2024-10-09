@@ -93,6 +93,7 @@
 
     #action-div button {
         padding: 0.5em;
+        width: 10em;
     }
 
     .flex {
