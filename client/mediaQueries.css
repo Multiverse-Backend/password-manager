@@ -5,6 +5,7 @@
     #flex-container {
         display: block;
         margin: 0;
+        overflow-y: scroll;
     }
     
     #intro {
