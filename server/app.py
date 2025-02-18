@@ -38,7 +38,7 @@ def create_app():
     with app.app_context():
         db.create_all()
         # Seed Data Function
-        seedData()
+        # seedData()
 
     return app
 
