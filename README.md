@@ -5,6 +5,7 @@ Additionally, users may generate strong, unique passwords of their desired lengt
 
 **Generate Password**
 ![generate-password](./client/assets/generate-password.png)
+![show-accounts](./client/assets/show-accounts.png)
 **Create Account**
 ![create-account](./client/assets/create-account.png)
 
