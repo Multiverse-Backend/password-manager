@@ -3,6 +3,11 @@ This application offers complete CRUD functionality to manage user password acco
 
 Additionally, users may generate strong, unique passwords of their desired length, with an 8 character minimum.
 
+**Generate Password**
+![generate-password](./client/assets/generate-password.png)
+**Create Account**
+![create-account](./client/assets/create-account.png)
+
 ### Tech Stack
 - **Language:** Python
 - **Backend Framework:** Flask
@@ -12,8 +17,10 @@ Additionally, users may generate strong, unique passwords of their desired lengt
 - **Encryption:** Cryptography
 
 ### Installation
+**In server directory:** 
 `pip install -r requirements.txt`
 
+**In root directory:**
 `npm install`
 
 ### Run Application
